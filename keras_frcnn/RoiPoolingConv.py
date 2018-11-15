@@ -1,5 +1,6 @@
 from keras.engine.topology import Layer
 import keras.backend as K
+import tensorflow as tf 
 
 if K.backend() == 'tensorflow':
     import tensorflow as tf
@@ -101,7 +102,7 @@ class RoiPoolingConv(Layer):
                 y = K.cast(y, 'int32')
                 w = K.cast(w, 'int32')
                 h = K.cast(h, 'int32')
-
+                # need to import tensorflow as tf
                 rs = tf.image.resize_images(img[:, y:y+h, x:x+w, :], (self.pool_size, self.pool_size))
                 outputs.append(rs)
 
